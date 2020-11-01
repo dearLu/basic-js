@@ -3,7 +3,7 @@ const CustomError = require("../extensions/custom-error");
 module.exports = function transform(arr) {
   let result=[];
   let arrExample=arr;
-  if (!Array.isArray(arrExample) ) throw new Error('Error') ;
+  if (!Array.isArray(arrExample) ) throw new Error('THROWN') ;
   if(arrExample.length === 0){return [];}
   //--discard-next исключает следующий элемент массива из преобразованного массива.
 //--discard-prev исключает предыдущий элемент массива из преобразованного массива.
@@ -12,10 +12,10 @@ module.exports = function transform(arr) {
     if(arrExample[i] === '--double-next' && i+1!=arrExample.length){
       result.push(arrExample[i+1]);
     }
-    if(arrExample[i] ==='--double-prev' && i-1!=-1){
+    if(arrExample[i] ==='--double-prev' && i-1!=-1 &&  typeof arrExample[i-1] != 'string'){
       result.push(arrExample[i-1]);
     }
-    if(arrExample[i] ==='--discard-prev' && i-1!=-1){     
+    if(arrExample[i] ==='--discard-prev' && i-1!=-1 ){     
       result.splice(result.length-1, 1);
     }
     if(arrExample[i] ==='--discard-next' && i+1!=arrExample.length){
