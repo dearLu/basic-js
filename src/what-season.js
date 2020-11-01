@@ -4,10 +4,16 @@ module.exports = function getSeason(date ) {
 let month;
 try{
   if(date){
-   
-      if( date instanceof Date){        
+    
+    if ( Object.prototype.toString.call(date) != '[object Date]') throw new Error('THROWN');
+      if( date instanceof Date){   
+        
         month=new Date(date);
-        if(month!=0)
+        if(month.getMonth() === null){
+          return  new Error('THROWN') ;
+        }            
+        
+        if(month!=0 )
           return findSeason(month.getMonth());
         else 
           throw new Error('THROWN') ; 
@@ -15,6 +21,7 @@ try{
           throw new Error('THROWN') ;
       }
       
+
   }else{
     return 'Unable to determine the time of year!';
   }
