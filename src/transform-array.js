@@ -12,10 +12,10 @@ module.exports = function transform(arr) {
     if(arrExample[i] === '--double-next' && i+1!=arrExample.length){
       result.push(arrExample[i+1]);
     }
-    if(arrExample[i] ==='--double-prev' && i-1!=-1 &&  typeof arrExample[i-1] != 'string'){
+    if(arrExample[i] ==='--double-prev' && i-1!=-1 &&  typeof arrExample[i-1] != 'string' && arrExample[i-1] !='--discard-next'){
       result.push(arrExample[i-1]);
     }
-    if(arrExample[i] ==='--discard-prev' && i-1!=-1 ){     
+    if(arrExample[i] ==='--discard-prev' && i-1!=-1 && arrExample[i-1] !='--discard-next'){     
       result.splice(result.length-1, 1);
     }
     if(arrExample[i] ==='--discard-next' && i+1!=arrExample.length){
